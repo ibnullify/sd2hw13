@@ -1,24 +1,19 @@
 // Adam Abbas, Ibnul Jahan
 // SoftDev2 pd7
-// K13 -- Scattered... or: Smothered, Covered, Chunked, Diced, Peppered, Capped, Topped & Country 
+// K13 -- Scattered... or: Smothered, Covered, Chunked, Diced, Peppered, Capped, Topped & Country
 // 2018-03-21
 
-var xcors = [];
-var ycors = [];
+var xcors = [.032, .034, .214, .263, .275, .45, .5, .5, .63, .8, .9, .9, .9, .9, 1, 1.1, 1.1, 1.4, 1.7, 2,, 2, 2, 2];
+var ycors = [170, 290, -130, -70, -185, -220, 200, 290, 270, 200, 300, -30, 650, 150, 500, 920, 450, 500, 500, 960, 500, 850, 800, 1090];
 
 graphXsize = 500;
 graphYsize = 500;
 
 
-//This is for testing bc there is no dataset yet heh
-for (var i = 0; i < 100; i+=1){
-    xcors.push(i*10);
-    ycors.push(i);
-}
 
 //To see the dataset
-console.log(xcors);
-console.log(ycors);
+console.log(xcors.toString());
+console.log(ycors.toString());
 
 var svg = document.getElementById("vimage");
 
@@ -38,9 +33,9 @@ var appendCircles = function() {
 var setCoordinates = function(){
     var circles = d3.selectAll("circle");
     circles.data(xcors);
-    circles.attr("cx", function(d){return d});
-    circles.data(ycors);                      
-    circles.attr("cy", function(d){return graphYsize - d});                                                    
+    circles.attr("cx", function(d){return d * 1000});
+    circles.data(ycors);
+    circles.attr("cy", function(d){return graphYsize - d + 220}); //We are offsetting the data by the smallest negative number, so as to make that 0 and make 0 the minimum value
 }
 
 //Runs the stuff
